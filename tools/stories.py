@@ -210,10 +210,11 @@ def register_stories(mcp: FastMCP, client: AsyncClient) -> None:
                 if val is not None:
                     payload_story[key] = val
 
-            if force_update:
-                payload_story["force_update"] = "1"
-
             payload: Dict[str, Any] = {"story": payload_story}
+            
+            if force_update:
+                payload["force_update"] = 1
+
             if publish:
                 payload["publish"] = 1
 
