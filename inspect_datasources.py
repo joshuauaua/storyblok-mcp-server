@@ -15,7 +15,10 @@ async def inspect_datasources():
         if resp.status_code == 200:
             data = resp.json()
             # print(json.dumps(data, indent=2))
-            for ds in data.get("datasources", []):
+            datasources = data.get("datasources", [])
+            if not datasources:
+                print("No datasources found.")
+            for ds in datasources:
                 print(f"ID: {ds['id']}, Name: {ds['name']}, Slug: {ds['slug']}")
                 
                 # Fetch entries for each
